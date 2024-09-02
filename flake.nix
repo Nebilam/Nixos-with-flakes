@@ -22,14 +22,19 @@
 
       # inherit (self) outputs;
       stateVersion = "23.05"; # FIXME do I already use this?
-      helper = import ./lib { inherit inputs stateVersion; };
+      myLib = import ./lib { 
+        inherit (nixpkgs) lib; 
+        # inherit pkgs;
+        inherit (inputs) home-manager;
+        inherit stateVersion; };
+
       
     in
     
     {
     
       nixosConfigurations = { 
-        gamingpc = helper.mkHost {
+        gamingpc = myLib.mkHost {
           hostname = "gamingpc";
           username = "nebilam";
           desktop = "gnome";
