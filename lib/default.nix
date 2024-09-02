@@ -7,5 +7,5 @@ let
 in
 
 {
-  inherit (helpers) mkHost forAllSystems;
+  inherit (helpers) mkHost forAllSystems mkOpt mkOpt' mkBoolOpt mkBoolOpt' mkEnableOpt;
 }

@@ -26,7 +26,7 @@ with lib; rec{
         inputs 
         # home-manager
         outputs 
-        myLib # TODO added myLib so it can be used in the system config (also add lib?)
+        # myLib # TODO added myLib so it can be used in the system config (also add lib?)
         desktop 
         hostname 
         platform 
