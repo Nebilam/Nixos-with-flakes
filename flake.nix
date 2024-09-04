@@ -25,6 +25,7 @@
       myLib = import ./lib { 
         inherit (nixpkgs) lib; 
         # inherit pkgs;
+        inherit inputs;
         inherit (inputs) home-manager;
         inherit stateVersion; };
 
