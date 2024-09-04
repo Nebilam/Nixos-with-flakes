@@ -45,18 +45,18 @@ with lib; rec{
     };
     modules = [
       ../systems/${platform}
-      inputs.home-manager.nixosModules.home-manager
+      ../modules/home/home.nix
 
-      {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${username} = {
-        imports = [ ../modules/home/default.nix ];
-        home.stateVersion = stateVersion;
-        # home.stateVersion = config.system.stateVersion or stateVersion;
-      };
-      # home-manager.users.${username} = import ../modules/home/default.nix;
-      }
+      # inputs.home-manager.nixosModules.home-manager
+      # {
+      # home-manager.useGlobalPkgs = true;
+      # home-manager.useUserPackages = true;
+      # home-manager.users.${username} = {
+      #   imports = [ ../modules/home/default.nix ];
+      #   home.stateVersion = stateVersion;
+      #   # home.stateVersion = config.system.stateVersion or stateVersion;
+      # };
+      # }
       # ../modules/nixos
     ]; # NOTE  extra to generate iso: ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
