@@ -1,7 +1,7 @@
 {
   options,
   config,
-  # lib,
+  lib,
   myLib,
   inputs,
   outputs,
@@ -14,22 +14,23 @@
 
 # in
 # with lib;
-with myLib;
-rec
+# with myLib;
+# rec
 {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
   ];
 
   # NOTE 'with types' refers to lib and myLib 
-  options.home = with types; {
+  # options.home = with types; {
+  options.home =  {
     file =
       # TODO bekijken waarom mkOption in plaats van mkOpt
-      mkOpt attrs {}
+      myLib.mkOpt attrs {}
       "A set of files to be managed by home-manager's <option>home.file</option>.";
 
     configFile =
-      mkOpt attrs {}
+      myLib.mkOpt attrs {}
       "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
 
     programs = mkOpt attrs {} "Programs to be managed by home-manager.";
@@ -59,7 +60,7 @@ rec
       #     # };
       #   };
       # };
-      user.${username} = mkAliasDefinitions options.home.extraOptions;
+      user.${username} = lib.mkAliasDefinitions options.home.extraOptions;
     };
     # home.extraOptions = {
       # home.stateVersion = config.system.stateVersion or "23.05";
