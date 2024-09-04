@@ -2,12 +2,13 @@
 let
   lib = inputs.nixpkgs.lib;
 
-  myLib = import ./lib { 
-    # inherit (nixpkgs) lib; # FIXME does not work (needed?)
-    # inherit pkgs;
-    inherit inputs;
-    inherit (inputs) home-manager;
-    inherit stateVersion; };
+  # myLib = import ./default.nix { 
+  #   # inherit (nixpkgs) lib; # FIXME does not work (needed?)
+  #   # inherit pkgs;
+  #   inherit inputs;
+  #   inherit (inputs) home-manager;
+  #   inherit stateVersion; };
+
   inherit (lib) mkOption types;
 in
 with lib; rec{
@@ -33,7 +34,7 @@ with lib; rec{
         inputs 
         # home-manager
         outputs 
-        myLib 
+        # myLib 
         desktop 
         hostname 
         platform 

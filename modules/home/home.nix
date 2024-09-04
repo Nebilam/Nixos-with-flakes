@@ -6,7 +6,7 @@
   inputs,
   outputs,
   stateVersion,
-  # username,
+  username,
   ...
 }:
 # let
@@ -14,34 +14,30 @@
 
 # in
 # with lib;
-with myLib;rec
+with myLib;
+rec
 {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
   ];
-  # # imports = with inputs; [
-  # #   home-manager.nixosModules.home-manager
-  # #   # nix-colors.homeManagerModules.default
-  # #   # prism.homeModules.prism
-  # # ];
 
-  # # NOTE 'with types' refers to lib and myLib 
-  # options.home = with types; {
-  #   file =
-  #     # TODO bekijken waarom mkOption in plaats van mkOpt
-  #     mkOpt attrs {}
-  #     "A set of files to be managed by home-manager's <option>home.file</option>.";
+  # NOTE 'with types' refers to lib and myLib 
+  options.home = with types; {
+    file =
+      # TODO bekijken waarom mkOption in plaats van mkOpt
+      mkOpt attrs {}
+      "A set of files to be managed by home-manager's <option>home.file</option>.";
 
-  #   configFile =
-  #     mkOpt attrs {}
-  #     "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
+    configFile =
+      mkOpt attrs {}
+      "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
 
-  #   programs = mkOpt attrs {} "Programs to be managed by home-manager.";
+    programs = mkOpt attrs {} "Programs to be managed by home-manager.";
 
-  #   extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
+    extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
 
-  #   persist = mkOpt attrs {} "Files and directories to persist in the home";
-  # };
+    persist = mkOpt attrs {} "Files and directories to persist in the home";
+  };
 
   config = {
     programs = {
@@ -49,11 +45,22 @@ with myLib;rec
         enable = true;
       };
     };
-  #   home-manager.users.nebilam = {
-  #     home = {
-  #       stateVersion = "23.05";
-  #     };
-  #   };
+    home-manager = {
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      # users.${username} = {
+      #   # imports = [];
+      #   home = {
+      #     stateVersion = stateVersion; 
+      #     # stateVersion = config.system.stateVersion or stateVersion;
+      #     # extraOptions = config.system.extraOptions
+      #     # extraOptions = {
+      #     #   xdg.enable = true;
+      #     # };
+      #   };
+      # };
+      # user.${username} = mkAliasDefinitions options.home.extraOptions;
+    };
     # home.extraOptions = {
       # home.stateVersion = config.system.stateVersion or "23.05";
       # home.file = mkAliasDefinitions options.home.file;
