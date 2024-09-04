@@ -50,7 +50,12 @@ with lib; rec{
       {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.${username} = import ../modules/home/default.nix;
+      home-manager.users.${username} = {
+        imports = [ ../modules/home/default.nix ];
+        home.stateVersion = stateVersion;
+        # home.stateVersion = config.system.stateVersion or stateVersion;
+      };
+      # home-manager.users.${username} = import ../modules/home/default.nix;
       }
       # ../modules/nixos
     ]; # NOTE  extra to generate iso: ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
