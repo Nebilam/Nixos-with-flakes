@@ -59,7 +59,7 @@ rec
       #     # };
       #   };
       # };
-      # user.${username} = mkAliasDefinitions options.home.extraOptions;
+      user.${username} = mkAliasDefinitions options.home.extraOptions;
     };
     # home.extraOptions = {
       # home.stateVersion = config.system.stateVersion or "23.05";

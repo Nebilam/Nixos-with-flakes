@@ -21,13 +21,14 @@
       # pkgs = nixpkgs.legacyPackages.${system};
 
       # inherit (self) outputs;
-      stateVersion = "23.05"; # FIXME do I already use this?
+      stateVersion = "23.05"; # FIXME not necessary because never changes (can be hardcoded)
       myLib = import ./lib { 
         inherit (nixpkgs) lib; 
         # inherit pkgs;
         inherit inputs;
         inherit (inputs) home-manager;
-        inherit stateVersion; };
+        inherit stateVersion; 
+        };
 
       
     in
