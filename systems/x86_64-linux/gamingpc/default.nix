@@ -136,7 +136,7 @@
 
 
   # suites.development.enable = true;
-  # apps.direnv.enable = true; # FIXME custom options arn't imported?
+  apps.direnv.enable = true; # FIXME custom options arn't imported?
 
   # home-manager
   #home-manager = {

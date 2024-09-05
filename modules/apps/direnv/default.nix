@@ -1,23 +1,22 @@
 
 {
-  options,
+  # options,
   config,
   lib,
-  # myLib,
   ...
 }:
-with lib;
-# with myLib; 
+# with lib;
 
 let
-  cfg = config.apps.tools.direnv;
-in {
-  options.apps.tools.direnv = with types; {
-    enable = mkBoolOpt false "Enable direnv";
+  cfg = config.apps.direnv;
+in 
+{
+  options.apps.direnv = {
+    enable = lib.mkEnableOption "Enable direnv and nix-direnv";
   };
 
-  config = mkIf cfg.enable {
-    home.programs.direnv = {
+  config = lib.mkIf cfg.enable {
+    home.extraOptions.programs.direnv = {
       enable = true;
       nix-direnv.enable = true;
       enableFishIntegration = true;
@@ -26,8 +25,5 @@ in {
 
     # environment.sessionVariables.DIRENV_LOG_FORMAT = ""; # Blank so direnv will shut up
 
-    # home.persist.directories = [
-    #   ".local/share/direnv"
-    # ];
   };
 }

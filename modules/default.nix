@@ -11,6 +11,6 @@
     # ./desktops/dwl
     # ./apps/git.nix
     # ./apps/bash.nix
-    # ./apps/direnv.nix
+    ./apps/direnv
   ];
 }
