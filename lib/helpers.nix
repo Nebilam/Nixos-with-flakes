@@ -1,6 +1,14 @@
 { inputs, stateVersion, ... }: 
 let
   lib = inputs.nixpkgs.lib;
+
+  # myLib = import ./default.nix { 
+  #   # inherit (nixpkgs) lib; # FIXME does not work (needed?)
+  #   # inherit pkgs;
+  #   inherit inputs;
+  #   inherit (inputs) home-manager;
+  #   inherit stateVersion; };
+
   inherit (lib) mkOption types;
 in
 with lib; rec{
@@ -26,7 +34,7 @@ with lib; rec{
         inputs 
         # home-manager
         outputs 
-        # myLib # TODO added myLib so it can be used in the system config (also add lib?)
+        # myLib 
         desktop 
         hostname 
         platform 
@@ -38,13 +46,19 @@ with lib; rec{
     };
     modules = [
       ../systems/${platform}
-      inputs.home-manager.nixosModules.home-manager
+      # ../modules/home/home.nix
+      ../modules
 
-      {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.users.${username} = import ../modules/home/default.nix;
-      }
+      # inputs.home-manager.nixosModules.home-manager
+      # {
+      # home-manager.useGlobalPkgs = true;
+      # home-manager.useUserPackages = true;
+      # home-manager.users.${username} = {
+      #   imports = [ ../modules/home/default.nix ];
+      #   home.stateVersion = stateVersion;
+      #   # home.stateVersion = config.system.stateVersion or stateVersion;
+      # };
+      # }
       # ../modules/nixos
     ]; # NOTE  extra to generate iso: ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
