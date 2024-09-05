@@ -15,7 +15,7 @@
 # in
 # with lib;
 # with myLib;
-# rec
+rec
 {
   imports = with inputs; [
     home-manager.nixosModules.home-manager
@@ -26,18 +26,18 @@
   options.home =  {
     file =
       # TODO bekijken waarom mkOption in plaats van mkOpt
-      myLib.mkOpt attrs {}
+      myLib.mkOpt lib.types.attrs {}
       "A set of files to be managed by home-manager's <option>home.file</option>.";
 
     configFile =
-      myLib.mkOpt attrs {}
+      myLib.mkOpt lib.types.attrs {}
       "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
 
-    programs = mkOpt attrs {} "Programs to be managed by home-manager.";
+    programs = lib.mkOpt lib.types.attrs {} "Programs to be managed by home-manager.";
 
-    extraOptions = mkOpt attrs {} "Options to pass directly to home-manager.";
+    extraOptions = lib.mkOpt lib.types.attrs {} "Options to pass directly to home-manager.";
 
-    persist = mkOpt attrs {} "Files and directories to persist in the home";
+    persist = lib.types.mkOpt lib.types.attrs {} "Files and directories to persist in the home";
   };
 
   config = {
