@@ -33,11 +33,11 @@ rec
       myLib.mkOpt lib.types.attrs {}
       "A set of files to be managed by home-manager's <option>xdg.configFile</option>.";
 
-    programs = lib.mkOpt lib.types.attrs {} "Programs to be managed by home-manager.";
+    programs = myLib.mkOpt lib.types.attrs {} "Programs to be managed by home-manager.";
 
-    extraOptions = lib.mkOpt lib.types.attrs {} "Options to pass directly to home-manager.";
+    extraOptions = myLib.mkOpt lib.types.attrs {} "Options to pass directly to home-manager.";
 
-    persist = lib.types.mkOpt lib.types.attrs {} "Files and directories to persist in the home";
+    persist = myLib.mkOpt lib.types.attrs {} "Files and directories to persist in the home";
   };
 
   config = {
