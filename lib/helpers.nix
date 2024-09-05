@@ -46,7 +46,8 @@ with lib; rec{
     };
     modules = [
       ../systems/${platform}
-      ../modules/home/home.nix
+      # ../modules/home/home.nix
+      ../modules
 
       # inputs.home-manager.nixosModules.home-manager
       # {
