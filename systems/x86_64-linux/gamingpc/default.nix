@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, myLib, username, stateVersion, ... }:
+{ config, pkgs, inputs, lib, myLib, username, ... }:
 # added inputs (inputs from flake.nix for nixpkgs.url, home-manager)
 
 {

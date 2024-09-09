@@ -5,7 +5,6 @@
   lib,
   ...
 }:
-# with lib;
 
 let
   cfg = config.apps.direnv;

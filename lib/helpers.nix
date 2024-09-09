@@ -1,4 +1,4 @@
-{ inputs, stateVersion, ... }: 
+{ inputs, ... }: 
 let
   lib = inputs.nixpkgs.lib;
 
@@ -39,27 +39,13 @@ with lib; rec{
         hostname 
         platform 
         username 
-        stateVersion
         isInstall
         isISO
         isWorkstation;
     };
     modules = [
       ../systems/${platform}
-      # ../modules/home/home.nix
       ../modules
-
-      # inputs.home-manager.nixosModules.home-manager
-      # {
-      # home-manager.useGlobalPkgs = true;
-      # home-manager.useUserPackages = true;
-      # home-manager.users.${username} = {
-      #   imports = [ ../modules/home/default.nix ];
-      #   home.stateVersion = stateVersion;
-      #   # home.stateVersion = config.system.stateVersion or stateVersion;
-      # };
-      # }
-      # ../modules/nixos
     ]; # NOTE  extra to generate iso: ++ (inputs.nixpkgs.lib.optionals (installer != null) [ installer ]);
   };
 

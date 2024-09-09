@@ -23,8 +23,8 @@ in
     home.extraOptions.home.stateVersion = config.system.stateVersion;
     home-manager = {
       useUserPackages = true;
+      # useGlobalPkgs = true;
 
-      # users.${config.user.name} = lib.mkAliasDefinitions options.home.extraOptions;
       users.${username} = lib.mkAliasDefinitions options.home.extraOptions;
     };
   };

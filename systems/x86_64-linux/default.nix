@@ -10,7 +10,6 @@
   modulesPath,
   pkgs,
   platform,
-  stateVersion,
   username,
   ...
 }:
