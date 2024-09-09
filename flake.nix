@@ -17,26 +17,20 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
     let
-      # system = "x86_64-linux";
-      # pkgs = nixpkgs.legacyPackages.${system};
-
       # inherit (self) outputs;
-      stateVersion = "23.05"; # FIXME not necessary because never changes (can be hardcoded)
+      # stateVersion = "23.05"; # FIXME not necessary because never changes (can be hardcoded)
       myLib = import ./lib { 
         inherit (nixpkgs) lib; 
         # inherit pkgs;
         inherit inputs;
         inherit (inputs) home-manager;
-        inherit stateVersion; 
+        # inherit stateVersion; 
         };
-
-      
     in
     
     {
-    
       nixosConfigurations = { 
-        gamingpc = myLib.mkHost {
+        gamingpc = myLib.custom.mkHost {
           hostname = "gamingpc";
           username = "nebilam";
           desktop = "gnome";
